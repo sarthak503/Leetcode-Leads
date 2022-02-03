@@ -10,11 +10,17 @@ public:
                 mp[it1+it2]++; 
     
     
-        for(auto &it3: nums3)
-            for(auto &it4:nums4)
-               if(mp.count(0-it3-it4)) 
-                   count+=mp[0-it3-it4];
-        
+        for(int i = 0; i < nums3.size(); i++)
+        {
+            for(int j = 0; j < nums4.size(); j++)
+            {
+                int sum = (-1) * (nums3[i] + nums4[j]);
+                if(mp[sum])
+                {
+                    count += mp[sum];
+                }
+            }
+        }
         return count;
     }
 };
