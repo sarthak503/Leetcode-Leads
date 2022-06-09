@@ -1,13 +1,27 @@
 class Solution {
 public:
     int maxProduct(vector<int>& A) {
-        int n = A.size(), res = A[0], l = 0, r = 0;
-        for (int i = 0; i < n; i++) {
-            l =  (l ? l : 1) * A[i];
-            r =  (r ? r : 1) * A[n - 1 - i];
-            res = max(res, max(l, r));
+   if (A.empty()) return 0;
+		
+        int best = INT_MIN;
+        // Running products
+        int maxProd = 1;
+        int minProd = 1;
+        
+        for (int n: A) {
+            if (n < 0) {
+                // Swap max and min
+                swap(maxProd, minProd);
+            }
+            // Reset to current value if smaller or larger than it
+            // (intuitively means that we start considering a new sub-array)
+            maxProd = max(maxProd*n, n);
+            minProd = min(minProd*n, n);
+            // Update the best
+            best = max(best, maxProd);
         }
-        return res;
+        
+        return best;
 
     }
 };
