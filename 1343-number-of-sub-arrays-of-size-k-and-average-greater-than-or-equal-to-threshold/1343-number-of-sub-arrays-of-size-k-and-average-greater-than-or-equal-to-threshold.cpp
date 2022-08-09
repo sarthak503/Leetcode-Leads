@@ -1,28 +1,12 @@
 class Solution {
 public:
-    int numOfSubarrays(vector<int>& arr, int k, int threshold) {
-        int cnt=0,s=0;float p=0.0;
-        int n=arr.size();
-        int avg=0;
-        int i=0;
-        while(i<n){
-            if(i<k){
-                s+=arr[i];
-            }
-            else{
-                
-                p=(s*1.0)/k;
-                cout<<avg<<endl;
-                if(p>=threshold)
-                    cnt++;
-                s+=arr[i]-arr[i-k];
-            }
-            i++;
+    int numOfSubarrays(vector<int>& a, int k, int threshold) {
+    int count = 0, sum = 0, t = k*threshold;
+        for(int i = 0; i < a.size(); i++) {
+            sum += a[i];
+            if(i >= k) sum -= a[i-k];
+            if(i >= k-1 && sum >= t) count++;
         }
-        p=(s*1.0)/k;
-        if(p>=threshold)
-                    cnt++;
-        return cnt;
-        
+        return count;
     }
 };
