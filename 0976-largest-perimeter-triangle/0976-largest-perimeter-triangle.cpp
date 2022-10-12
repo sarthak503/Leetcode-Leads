@@ -6,7 +6,7 @@ public:
         //is always greater than the third side.
         int mx=INT_MIN;
         sort(nums.begin(),nums.end());
-        for(int i=0;i<nums.size()-2;i++)
+        for(int i=nums.size()-3;i>=0;i--)
         if(nums[i]+nums[i+1]>nums[i+2] && nums[i]+nums[i+2]>nums[i+1] & nums[i+1]+nums[i+2]>nums[0]){
             mx=max(mx,nums[i]+nums[i+1]+nums[i+2]);
         }
